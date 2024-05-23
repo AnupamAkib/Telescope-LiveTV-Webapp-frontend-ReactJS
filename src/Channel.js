@@ -1,6 +1,6 @@
 function Channel(props){
     return (
-        <a href={props.liveURL}>
+        <a href={"/watch/"+props.liveURL}>
             <div className="left col-3">
                 <div className="tvCard">
                     <img src={props.img} width="120" height="120"/><br/>
