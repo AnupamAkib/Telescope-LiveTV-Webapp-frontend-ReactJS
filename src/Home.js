@@ -13,7 +13,8 @@ function Home() {
     const fetchData = async () => {
       try {
         console.log("requested...");
-        const response = await axios.get('https://api.apify.com/v2/acts/apify~puppeteer-scraper/runs/last/dataset/items?token=apify_api_A2Gxh0PYVUL1pc6XHmHDvk53I1wlaf0Mp3dV');
+        const response = await axios.get('https://livetv-njf6.onrender.com/tv');
+        //const response = await axios.get('/data');
         if(response.data.length > 0){
           await setChannel(response.data[0].videos);
           await setLastUpdate(response.data[0].lastExecution);
