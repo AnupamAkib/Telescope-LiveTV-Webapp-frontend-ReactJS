@@ -7,6 +7,7 @@ function Home() {
   const [channel, setChannel] = useState([]);
   const [lastUpdate, setLastUpdate] = useState("");
   const [isLoading, setLoading] = useState(true);
+  const [apiInfo, setApiInfo] = useState("");
 
   useEffect(() => {
     // Define an async function to fetch data
@@ -18,7 +19,8 @@ function Home() {
         if(response.data.length > 0){
           await setChannel(response.data[0].videos);
           await setLastUpdate(response.data[0].lastExecution);
-          console.log(response.data[0].videos);
+          await setApiInfo(response.data[0].broker);
+          //console.log(response.data[0].videos);
         }
       } catch (err) {
         //setError(err);
@@ -51,7 +53,9 @@ function Home() {
         :
         <>
           <b>Last Update:</b> {lastUpdate} <br/>
-          {tv.length} Channel Found!<br/>
+          <b>Route:</b> {apiInfo}
+          <hr/>
+          <h2 align="center">{tv.length} Channel Found!</h2>
           <div className="App">
             {tv}
           </div>

@@ -4,7 +4,7 @@ function Channel(props){
             <div className="left col-3">
                 <div className="tvCard">
                     <img src={props.img} width="120" height="120"/><br/>
-                    <font size="4"><b>{props.channelName}</b></font>
+                    <font className="channelName"><b>{props.channelName}</b></font>
                 </div>
             </div>
         </a>
