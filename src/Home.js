@@ -43,8 +43,7 @@ function Home() {
 
 
   return (
-    <div className="container">
-      <h1>Bangla Live TV</h1>
+    <div className="App">
       {
         isLoading? 
         <h3>
@@ -52,11 +51,8 @@ function Home() {
         </h3> 
         :
         <>
-          <b>Last Update:</b> {lastUpdate} <br/>
-          <b>Route:</b> {apiInfo}
-          <hr/>
           <h2 align="center">{tv.length} Channel Found!</h2>
-          <div className="App">
+          <div className="container">
             {tv}
           </div>
         </>
