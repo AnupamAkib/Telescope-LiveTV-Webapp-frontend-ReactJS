@@ -9,28 +9,42 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import AddBusinessRoundedIcon from "@mui/icons-material/AddBusinessRounded";
 import DrawerComp from "./Drawer";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-    const [role, setRole] = useState("");
-    useEffect(() => {
-      let path = location.pathname;
-      path = path.split("/");
-      if(path[1]=="admin"){
-        setRole("admin");
+  
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [user, setUser] = useState({});
+
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  setInterval(() => {
+    setToken(localStorage.getItem("token"));
+  }, 3000);
+
+
+  useEffect(() => {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/verifyToken`, {}, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
       }
-      else{
-        setRole("sec");
-      }
-      //console.log(role)
-    }, [location.pathname])
+    })
+    .then((response) => {
+      setUserLoggedIn(true);
+      setUser(response.data);
+      //console.log(response.data)
+    },
+    (err) => {
+      setUserLoggedIn(false);
+      localStorage.clear();
+    });
+  }, [token]);
 
   const [value, setValue] = useState();
   const theme = useTheme();
@@ -43,13 +57,15 @@ const Header = () => {
     const pages = [];
 
     
-    if(role=="sec"){
-          pages.push({ text:"Login", href:"/login", icon:"fa fa-sign-in" });
-          pages.push({ text:"Signup", href:"/register", icon:"fa fa-user-plus" });
-          pages.push({ text:"About", href:"/about", icon:"fa fa-info-circle" });
+    if(!userLoggedIn){
+      pages.push({ text:"Login", href:"/login", icon:"fa fa-sign-in" });
+      pages.push({ text:"Signup", href:"/register", icon:"fa fa-user-plus" });
     }
-
-
+    else{
+      pages.push({ text:user.fullName, href:"", icon:"fa fa-user" });
+      pages.push({ text:"Logout", href:"/logout", icon:"fa fa-sign-out" });
+    }
+    pages.push({ text:"About", href:"/about", icon:"fa fa-info-circle" });
 
   return (
     <React.Fragment>

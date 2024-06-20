@@ -7,6 +7,13 @@ import { useNavigate } from "react-router-dom";
 function Signup(){
     const navigate = useNavigate();
 
+
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+            navigate("/");
+        }
+    }, []);
+    
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [username, setUsername] = useState("");

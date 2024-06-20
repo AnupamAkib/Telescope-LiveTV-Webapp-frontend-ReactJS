@@ -37,7 +37,9 @@ function Home() {
       },
       (err) => {
           setLoading(false);
-          toast.msg(err.response.data.message, "red", 2500);
+          if(err && err.response && err.response.data && err.response.data.message){
+            toast.msg(err.response.data.message, "red", 2500);
+          }
       });
   }, []); 
 

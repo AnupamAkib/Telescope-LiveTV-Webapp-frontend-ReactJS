@@ -10,6 +10,12 @@ function Login(){
     const [password, setPassword] = useState("");
     const [isLoading, setLoading] = useState(false);
 
+    useEffect(()=>{
+        if(localStorage.getItem("token")){
+            navigate("/");
+        }
+    }, []);
+
     const toast = require("./toast");
 
     const onSubmitHandler = (e) => {
