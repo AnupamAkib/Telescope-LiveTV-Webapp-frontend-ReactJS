@@ -15,7 +15,6 @@ function Watch(){
                 width="100%" 
                 frameBorder="0"
                 allowFullScreen
-                
             ></iframe>
         </div>
         

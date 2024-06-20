@@ -2,35 +2,43 @@ import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import Channel from "./Channel";
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import { CircularProgress } from "@mui/material";
+
 
 function Home() {
   const [channel, setChannel] = useState([]);
-  const [lastUpdate, setLastUpdate] = useState("");
+  const [channelCnt, setChannelCnt] = useState("");
   const [isLoading, setLoading] = useState(true);
-  const [apiInfo, setApiInfo] = useState("");
+  const [message, setMessage] = useState("");
+  const [user, setUser] = useState({});
+
+  const toast = require("./toast");
 
   useEffect(() => {
-    // Define an async function to fetch data
-    const fetchData = async () => {
-      try {
-        console.log("requested...");
-        const response = await axios.get('https://livetv-njf6.onrender.com/tv');
-        //const response = await axios.get('/data');
-        if(response.data.length > 0){
-          await setChannel(response.data[0].videos);
-          await setLastUpdate(response.data[0].lastExecution);
-          await setApiInfo(response.data[0].broker);
-          //console.log(response.data[0].videos);
-        }
-      } catch (err) {
-        //setError(err);
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+      setLoading(true);
+      const token = localStorage.getItem("token");
 
-    fetchData();
+      axios.get(`${process.env.REACT_APP_BACKEND_URL}/tv`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        }
+      })
+      .then((response) => {
+          setLoading(false);
+          const res = response.data[0];
+          //console.log(res)
+          setChannel(res.videos);
+          setChannelCnt(res.channelCount);
+          setMessage(res.message);
+          setUser(res.user);
+      },
+      (err) => {
+          setLoading(false);
+          toast.msg(err.response.data.message, "red", 2500);
+      });
   }, []); 
 
   let tv = [];
@@ -42,21 +50,47 @@ function Home() {
   }
 
 
+  const greetings = () => {
+    const d = new Date();
+    let hour = d.getHours();
+    if(hour > 19){
+      return "Hello!";
+    }
+    else if(hour >= 16){
+      return "Good evening!"
+    }
+    else if(hour >= 12){
+      return "Good afternoon!";
+    }
+    else{
+      return "Good morning!";
+    }
+  }
+
+  if(isLoading){
+    return (
+      <div style={{paddingTop:"20vh"}}>
+        <center><CircularProgress/><br/>Please Wait</center>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
-      {
-        isLoading? 
-        <h3>
-          Fetching data...
-        </h3> 
-        :
-        <>
-          <h2 align="center">{tv.length} Channel Found!</h2>
-          <div className="container">
+        <div className="container">
+          <Alert severity="success">
+            {greetings()} <b>{user.fullName}</b>
+          </Alert>
+
+          {message!="success"? <Alert severity="error">{message}</Alert> : <Alert severity="success">User '{user.username}' is verified</Alert>}
+
+          
+          <h3 align="center" style={{paddingTop:"12px"}}>{tv.length} / {channelCnt} channels available!</h3>
+
+          <div>
             {tv}
           </div>
-        </>
-      }
+        </div>
     </div>
   );
 }

@@ -60,6 +60,11 @@ const DrawerComp = (props) => {
               </ListItemButton>
             ))}
             
+
+            <center>
+              <br/><br/>
+              <button className="btn btn-secondary"><i className="fa fa-android" style={{marginRight:"6px"}}></i>Download Android App</button>
+            </center>
           </List>
 
         </Drawer>

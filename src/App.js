@@ -7,6 +7,7 @@ import Data from "./Data";
 import Header from "./header/Header";
 import Signup from "./Signup";
 import Login from "./Login";
+import VerifyEmail from "./VerifyEmail";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/data' element={<Data />} />
         <Route path='/register' element={<Signup />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/verifyEmail/:id' element={<VerifyEmail />} />
       </Routes>
     </BrowserRouter>
   )

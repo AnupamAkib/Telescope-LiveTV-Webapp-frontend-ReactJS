@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router-dom";
+
 function Channel(props){
+    const navigate = useNavigate();
     return (
-        <a href={"/watch/"+props.liveURL}>
+        <a onClick={()=>navigate("/watch/"+props.liveURL)}>
             <div className="left tvcard-col-3">
                 <div className="tvCard">
                     <img src={props.img} width="120" height="120"/><br/>

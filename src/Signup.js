@@ -1,9 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup(){
+    const navigate = useNavigate();
+
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [username, setUsername] = useState("");
@@ -11,10 +14,41 @@ function Signup(){
     const [password, setPassword] = useState("");
     const [passwordAgain, setPasswordAgain] = useState("");
 
+    const [isLoading, setLoading] = useState(false);
+
+    const toast = require("./toast");
+
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        console.log({
-            fname, lname, username, email, password, passwordAgain
+
+        if(password != passwordAgain){
+            toast.msg("Password didn't match", "red", 3000);
+            return;
+        }
+
+        setLoading(true);
+
+        axios.post(`${process.env.REACT_APP_BACKEND_URL}/user/register`, {
+            firstName : fname,
+            lastName : lname,
+            username : username,
+            password : password,
+            emailAddress : email
+        }, {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then((resposnse) => {
+            let data = resposnse.data;
+            localStorage.clear();
+            localStorage.setItem("token", data.accessToken);
+            toast.msg("Successfully registered. A verfication link has been sent to your email", "green", 3000);
+            navigate("/");
+        },
+        (err) => {
+            toast.msg(err.response.data.message, "red", 2500);
+            setLoading(false);
         });
     }
 
@@ -32,7 +66,7 @@ function Signup(){
                             <TextField onChange={(e)=> setPassword(e.target.value)} type="password" label="Password" variant="filled" fullWidth required/><br/>
                             <TextField onChange={(e)=> setPasswordAgain(e.target.value)} type="password" label="Confirm Password" variant="filled" fullWidth required/><br/>
 
-                            <Button type="submit" variant="contained" size="large" style={{background:"#674fa3"}} fullWidth>
+                            <Button type="submit" variant="contained" size="large" style={isLoading? {} : {color:"white",background:"#674fa3"}} disabled={isLoading} fullWidth>
                                 <i className="fa fa-user-plus" style={{paddingRight:"10px"}}></i>
                                 Register user
                             </Button>
