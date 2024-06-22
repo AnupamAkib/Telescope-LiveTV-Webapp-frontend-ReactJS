@@ -15,7 +15,7 @@
     {
       "src" : "telescope_logo.png",
       "type": "image/png",
-      "sizes": "300x300"
+      "sizes": "400x400"
     }
   ],
   "start_url": ".",
