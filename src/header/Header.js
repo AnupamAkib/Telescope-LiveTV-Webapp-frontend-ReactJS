@@ -69,10 +69,10 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      <AppBar sx={{ background: "#674fa3", paddingBottom:"4px", marginTop:"-4px"}}  style={{zIndex:"11555"}}>
+      <AppBar sx={{ background: "#674fa3", paddingBottom:"", marginTop:"-2px"}}  style={{zIndex:"11555"}}>
         <Toolbar className="container" style={{padding:"10px 8px 8px 8px"}}>
-          <font size='5' style={{marginLeft:"15px"}}>
-            <img src="/logo.png" width="150px" onClick={()=>navigate("/")}/> 
+          <font style={{marginLeft:"15px"}}>
+            <img src="/logo.png" width="135px" onClick={()=>navigate("/")}/> 
           </font>
           
           {isMatch ? (

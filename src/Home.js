@@ -86,7 +86,6 @@ function Home() {
 
           {message!="success"? <Alert severity="error">{message}</Alert> : <Alert severity="success">User '{user.username}' is verified</Alert>}
 
-          
           <h3 align="center" style={{paddingTop:"12px"}}>{tv.length} / {channelCnt} channels available!</h3>
 
           <div>
