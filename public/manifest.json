@@ -8,16 +8,16 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo.png",
+      "src": "logo.jpg",
       "type": "image/png"
     },
     {
-      "src": "logo.png",
+      "src": "logo.jpg",
       "type": "image/png"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#000"
+  "background_color": "#674fa3"
 }
