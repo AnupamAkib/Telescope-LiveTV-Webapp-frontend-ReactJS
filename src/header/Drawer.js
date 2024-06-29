@@ -63,7 +63,7 @@ const DrawerComp = (props) => {
 
             <center>
               <br/><br/>
-              <button className="btn btn-secondary"><i className="fa fa-android" style={{marginRight:"6px"}}></i>Download Android App</button>
+              <button className="btn btn-secondary" onClick={()=>window.location.href="https://drive.google.com/drive/folders/13dBuln3fYhLGrOB7TgWzZCJqo6RZRJpK?usp=drive_link"}><i className="fa fa-android" style={{marginRight:"6px"}}></i>Download Android App</button>
             </center>
           </List>
 

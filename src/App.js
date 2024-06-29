@@ -9,7 +9,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import VerifyEmail from "./VerifyEmail";
 import Logout from "./Logout";
-
+import About from "./About";
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/verifyEmail/:id' element={<VerifyEmail />} />
         <Route path='/logout' element={<Logout />} />
+        <Route path='/about' element={<About />} />
       </Routes>
     </BrowserRouter>
   )
