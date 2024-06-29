@@ -12,7 +12,7 @@ function Channel(props){
         <a onClick={cardClickHandler}>
             <div className="left tvcard-col-3">
                 <div className="tvCard">
-                    <img src={props.img} width="120" height="120"/><br/>
+                    <img src={props.img} className="chLogo"/><br/>
                     <font className="channelName"><b>{props.channelName}</b></font>
                 </div>
             </div>

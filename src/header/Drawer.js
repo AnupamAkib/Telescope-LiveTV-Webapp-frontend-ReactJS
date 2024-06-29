@@ -47,7 +47,7 @@ const DrawerComp = (props) => {
                 <img src="/icon.jpg" width="60px" style={{borderRadius:"10px"}}/>
                 <h2>Telescope</h2>
                 A YouTube based Live TV app<br/>
-                <b>version: 1.2 (beta)</b>
+                <b>version: 2.1</b>
             </center>
             <hr style={{border:"1px solid gray", width:"100%"}}/>
           

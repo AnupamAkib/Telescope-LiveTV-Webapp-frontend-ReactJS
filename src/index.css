@@ -27,6 +27,10 @@ body {
   overflow: hidden;
   height:auto;
 }
+.chLogo{
+  height: 120px;
+  width: 120px;
+}
 .tvCard:hover {
   background-color: lightblue;
 }
@@ -45,7 +49,7 @@ body {
 }
 
 .channelName{
-  font-size:large;
+  font-size: large;
   white-space: nowrap;
 }
 
@@ -81,5 +85,25 @@ body {
   [class*="col-"] {
     width: 100%;
   }
-  .tvcard-col-3 {width: 50%;}
+  .tvcard-col-3 {width: 33.33%;}
+
+  .tvCard {
+    background-color: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin:5px;
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    height:auto;
+  }
+  .chLogo{
+    height: 80px;
+    width: 80px;
+  }
+  .channelName{
+    font-size:15px;
+    white-space: nowrap;
+  }
 }

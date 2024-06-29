@@ -40,6 +40,10 @@ function Login(){
         });
     }
 
+    const forgetPasswordClicked = () => {
+        navigate("/password_recovery");
+    }
+
     return (
         <div className="container">
             <center>
@@ -56,7 +60,7 @@ function Login(){
                                 Login
                             </Button>
                         </form><br/>
-                        <Button fullWidth>Forgot your password?</Button>
+                        <Button onClick={forgetPasswordClicked} fullWidth>Forgot your password?</Button>
                     </div>
                 </div>
             </center>

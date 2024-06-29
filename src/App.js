@@ -10,6 +10,7 @@ import Login from "./Login";
 import VerifyEmail from "./VerifyEmail";
 import Logout from "./Logout";
 import About from "./About";
+import ForgetPassword from "./ForgetPassword";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path='/verifyEmail/:id' element={<VerifyEmail />} />
         <Route path='/logout' element={<Logout />} />
         <Route path='/about' element={<About />} />
+        <Route path='/password_recovery' element={<ForgetPassword />} />
       </Routes>
     </BrowserRouter>
   )

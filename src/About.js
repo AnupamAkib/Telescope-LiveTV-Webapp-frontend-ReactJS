@@ -8,6 +8,8 @@ function About(){
             This application regularly fetch live TVs embeded link that available in YouTube. 
             This app is a YouTube based live TV software. If any channel is not live in YouTube, this app will not be able to fetch & show the channel for you.
             Currently this application is available for both <b>Web</b> and <b>Android</b>. For accessing all the channels, user must login to the system.
+            <br/>
+            The android version of this app is compatible with <b>Android TV</b>. User can install the APK in their Android TV & watch live channels from YouTube. In Android app, user can control channels using their <b>TV remote</b>'s channel up & down key.
 
             <br/><br/>
 
