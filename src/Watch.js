@@ -29,7 +29,7 @@ function Watch(){
             }
             navigate("/");
         });
-    });
+    }, []);
 
     return (
         <div id="iframe-container">

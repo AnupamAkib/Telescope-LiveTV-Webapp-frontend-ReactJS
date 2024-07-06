@@ -63,6 +63,9 @@ const Header = () => {
     }
     else{
       pages.push({ text:user.fullName, href:"", icon:"fa fa-user" });
+      if(user.username=="anupam"){
+        pages.push({ text:"Activity Logs", href:"/activity", icon:"fa fa-tasks" });
+      }
       pages.push({ text:"Logout", href:"/logout", icon:"fa fa-sign-out" });
     }
     pages.push({ text:"About", href:"/about", icon:"fa fa-info-circle" });

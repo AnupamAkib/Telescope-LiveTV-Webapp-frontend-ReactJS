@@ -11,6 +11,7 @@ import VerifyEmail from "./VerifyEmail";
 import Logout from "./Logout";
 import About from "./About";
 import ForgetPassword from "./ForgetPassword";
+import Activity from "./Activity";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/logout' element={<Logout />} />
         <Route path='/about' element={<About />} />
         <Route path='/password_recovery' element={<ForgetPassword />} />
+        <Route path='/activity' element={<Activity />} />
       </Routes>
     </BrowserRouter>
   )
