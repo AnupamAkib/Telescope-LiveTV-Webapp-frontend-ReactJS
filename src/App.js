@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import Home from "./Home";
 import Watch from "./Watch";
 import Data from "./Data";
@@ -12,12 +10,18 @@ import Logout from "./Logout";
 import About from "./About";
 import ForgetPassword from "./ForgetPassword";
 import Activity from "./Activity";
+import WatchFromApp from "./WatchFromApp";
 
-function App() {
+function AppLayout() {
+  const location = useLocation();
+  const hideHeaderRoutes = ['/app']; // add more routes if needed
+
   return (
-    <BrowserRouter>
-    <Header/>
+    <>
+      {!hideHeaderRoutes.includes(location.pathname) && <Header />}
+
       <Routes>
+        <Route path='/app' element={<WatchFromApp />} />
         <Route path='/' element={<Home />} />
         <Route path='/watch/:url' element={<Watch />} />
         <Route path='/data' element={<Data />} />
@@ -29,8 +33,14 @@ function App() {
         <Route path='/password_recovery' element={<ForgetPassword />} />
         <Route path='/activity' element={<Activity />} />
       </Routes>
-    </BrowserRouter>
-  )
+    </>
+  );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppLayout />
+    </BrowserRouter>
+  );
+}
