@@ -6,13 +6,12 @@ const WatchFromApp = () => {
     const videoUrl = queryParams.get("url");
 
     return (
-        <div id="iframe-container">
+        <div id="" style={{"backgroundColor": 'black'}}>
             <iframe 
                 src={`${videoUrl}?autoplay=1`} 
-                allow="autoplay; encrypted-media" 
+                allow="autoplay" 
                 height={window.innerHeight} 
                 width="100%" 
-                frameBorder="0"
                 allowFullScreen
             ></iframe>
         </div>
